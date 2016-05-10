@@ -95,7 +95,7 @@ function parseUnread() {
           parser.on("end", function(mail) {
             if (!self.mailParserOptions.streamAttachments && mail.attachments && self.attachments) {  //根据配置判断是否需要将附件保存在指定磁盘位置
               async.each(mail.attachments, function( attachment, callback) {
-                fs.writeFile(self.attachmentOptions.directory + attachment.generatedFileName, attachment.content, function(err) {
+                fs.writeFile(self.attachmentOptions.directory + attachment.generatedFileName, attachment.content, function(err) { //注意这里使用的是generatedFileName，避免了附件名称冲突相互覆盖问题
                   if(err) {
                     self.emit('error', err);  //触发自定义的error事件
                     callback()  //任何附件保存异常都忽略了，避免影响并发循环
