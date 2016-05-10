@@ -59,7 +59,7 @@ mailListener.on("mail", function(mail, seqno, attributes){
   // mail processing code goes here
 });
 
-mailListener.on("attachment", function(attachment){
+mailListener.on("attachment", function(attachment){ //每次按要求处理完一个附件后就触发一次该事件，换句话说对于多附件的邮件，在解析时回触发多次
   console.log(attachment.path);
 });
 
