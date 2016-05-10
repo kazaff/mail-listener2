@@ -113,8 +113,8 @@ function parseUnread() {
               self.emit('mail',mail,seqno,attributes);
             }
           });
-          parser.on("attachment", function (attachment) { //每当解析完一个附件后会触发该事件，注意回调中的参数是一个流
-            self.emit('attachment', attachment);
+          parser.on("attachment", function (attachment, mail) { //每当解析完一个附件后会触发该事件，注意回调中的参数是一个流
+            self.emit('attachment', attachment, mail);
           });
           msg.on('body', function(stream, info) { //ImapMessage每当解析完body的完整块后触发该事件
             stream.pipe(parser);  //以流的方式交给mailparser来解析
