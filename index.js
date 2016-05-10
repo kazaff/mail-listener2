@@ -110,7 +110,7 @@ function parseUnread() {
                 callback()
               });
             } else {
-              self.emit('mail',mail,seqno,attributes);
+              self.emit('mail', mail, seqno, attributes);
             }
           });
           parser.on("attachment", function (attachment, mail) { //每当解析完一个附件后会触发该事件，注意回调中的参数是一个流
