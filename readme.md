@@ -53,14 +53,14 @@ mailListener.on("error", function(err){
   console.log(err);
 });
 
-mailListener.on("mail", function(mail, seqno, attributes){
+mailListener.on("mail", function(mail, seqno, attributes){  //你的其他业务逻辑最好放在这个回调处理中（你可以认为，在回调中你可以获取任何该邮件的数据，包括附件，尤其注意观察其path属性）
   // do something with mail object including attachments
   console.log("emailParsed", mail);
   // mail processing code goes here
 });
 
 mailListener.on("attachment", function(attachment){ //每次按要求处理完一个附件后就触发一次该事件，换句话说对于多附件的邮件，在解析时回触发多次
-  console.log(attachment.path);
+  console.log(attachment.path); //注意，这里如果你在配置中开启了stream方式，这里会打印undefined
 });
 
 // it's possible to access imap object from node-imap library for performing additional actions. E.x.
